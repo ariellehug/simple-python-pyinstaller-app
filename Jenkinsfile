@@ -17,9 +17,9 @@ node {
     }
 
     stage('Deliver') {
-        sh 'pyinstaller --onefile sources/add2vals.py'
-    
+        docker.image(deliverDockerImage).inside {
+            sh 'pyinstaller --onefile sources/add2vals.py'
+        }
         archiveArtifacts 'dist/add2vals'
-        
     }
 }
