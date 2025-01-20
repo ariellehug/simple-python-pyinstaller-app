@@ -17,11 +17,9 @@ node {
     }
 
     stage('Deliver') {
-        docker.image(deliverDockerImage).inside {
-            sh 'pyinstaller --onefile sources/add2vals.py'
-        }
-        if (currentBuild.result == null ||currentBuild.result == 'SUCCESS') {
+        sh 'pyinstaller --onefile sources/add2vals.py'
+    
         archiveArtifacts 'dist/add2vals'
-        }
+        
     }
 }
