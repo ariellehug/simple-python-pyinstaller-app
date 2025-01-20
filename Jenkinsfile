@@ -20,7 +20,7 @@ node {
         docker.image(deliverDockerImage).inside {
             sh 'pyinstaller --onefile sources/add2vals.py'
         }
-        if (currentBuild.result == 'SUCCESS') {
+        if (currentBuild.result == null ||currentBuild.result == 'SUCCESS') {
         archiveArtifacts 'dist/add2vals'
         }
     }
