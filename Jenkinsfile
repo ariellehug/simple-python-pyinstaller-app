@@ -22,5 +22,6 @@ node {
         }
         if (currentBuild.result == 'SUCCESS') {
         archiveArtifacts 'dist/add2vals'
+        }
     }
 }
