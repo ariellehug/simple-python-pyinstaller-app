@@ -1,7 +1,7 @@
 node {
     def buildDockerImage = 'python:2-alpine'
     def testDockerImage = 'qnib/pytest'
-    def deliverDockerImage = 'cdrx/pyinstaller-linux:python3'
+    def deliverDockerImage = 'cdrx/pyinstaller-linux:python2'
 
     stage('Build') {
         docker.image(buildDockerImage).inside {
