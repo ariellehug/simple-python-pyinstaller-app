@@ -5,7 +5,7 @@ node {
     def dockerArgs = '--cpus=1.5 --memory=512m --memory-swap=1g'
 
     stage('Build') {
-        docker.image(buildDockerImage, dockerArgs).inside {
+        docker.image(buildDockerImage).inside {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
@@ -18,7 +18,7 @@ node {
     }
 
     stage('Deliver') {
-        docker.image(deliverDockerImage).inside {
+        docker.image(deliverDockerImage).inside(dockerArgs) {
             sh 'pyinstaller --onefile sources/add2vals.py'
         }
         archiveArtifacts 'dist/add2vals'
