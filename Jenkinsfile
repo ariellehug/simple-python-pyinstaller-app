@@ -3,6 +3,7 @@ node {
     def testDockerImage = 'qnib/pytest'
     def deliverDockerImage = 'cdrx/pyinstaller-linux:python2'
 
+    checkout scm
     stage('Build') {
         docker.image(buildDockerImage).inside {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
